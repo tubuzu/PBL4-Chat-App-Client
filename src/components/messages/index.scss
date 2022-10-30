@@ -1,0 +1,42 @@
+.form {
+  width: 100%;
+}
+
+.icon {
+  color: rgb(210, 210, 210);
+}
+
+.emoji {
+  position: relative;
+  svg {
+    cursor: pointer;
+  }
+  .emoji-picker-react {
+    position: absolute;
+    top: -350px;
+    right: 0;
+    background-color: #0d0d0d;
+    box-shadow: 0 5px 10px #444444;
+    border-color: #444444;
+    .emoji-scroll-wrapper::-webkit-scrollbar {
+      background-color: #080420;
+      width: 5px;
+      &-thumb {
+        background-color: #444444;
+      }
+    }
+    .emoji-categories {
+      button {
+        filter: contrast(0);
+      }
+    }
+    .emoji-search {
+      background-color: transparent;
+      border-color: #e2e2e2;
+    }
+    .emoji-group:before {
+      background-color: #222222;
+      padding-left: 10px;
+    }
+  }
+}
