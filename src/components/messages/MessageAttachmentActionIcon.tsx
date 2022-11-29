@@ -17,7 +17,6 @@ export const MessageAttachmentActionIcon = () => {
   const { attachmentCounter, attachments } = useSelector(
     (state: RootState) => state.messagePanel
   );
-  console.log(attachmentCounter, attachments);
 
   const onClick = (e: DivMouseEvent) => {
     console.log("on click");
@@ -32,7 +31,7 @@ export const MessageAttachmentActionIcon = () => {
     const filesArray = Array.from(files);
     let localCounter = attachmentCounter;
     for (let i = 0; i < filesArray.length; i++) {
-      console.log(filesArray[i]);
+      // console.log(filesArray[i]);
       if (i === maxFilesDropped) break;
       dispatch(addAttachment({ _id: localCounter++, file: filesArray[i] }));
     }

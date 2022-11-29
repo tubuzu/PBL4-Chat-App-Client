@@ -33,7 +33,7 @@ export const MessageTypingStatus = styled.div`
   font-size: 15px;
   color: ${({ theme }) => theme.text.secondary};
   box-sizing: border-box;
-  margin-top: 10px;
+  margin-bottom: 5px;
   height: 20px;
 `;
 
@@ -46,14 +46,16 @@ export const EditMessageActionsContainer = styled.div`
 
 export const EditMessageInputField = styled.input`
   outline: none;
-  border: none;
-  background-color: #222;
+  background-color: ${({ theme }) =>
+    theme.messagePanel.inputContainer.backgroundColor};
+  border-radius: 8.47407px;
+  border: ${({ theme }) =>
+    "0.52963px solid " + theme.messagePanel.inputContainer.borderColor};
   color: #bababa;
   font-family: "Inter";
   box-sizing: border-box;
   font-size: 15px;
   padding: 18px 22px;
-  border-radius: 5px;
   margin: 4px 0;
   width: 100%;
 `;
@@ -61,7 +63,7 @@ export const EditMessageInputField = styled.input`
 export const MessageContainerStyle = styled.div`
   height: 100%;
   box-sizing: border-box;
-  padding: 10px 0;
+  padding: 10px 0 0 0;
   display: flex;
   flex-direction: column-reverse;
   overflow-y: scroll;
@@ -69,10 +71,10 @@ export const MessageContainerStyle = styled.div`
     width: 8px;
   }
   &::-webkit-scrollbar-track {
-    background-color: ${({ theme }) => theme.background.primary};
+    background-color: ${({ theme }) => theme.scrollBar.track};
   }
   &::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.background.secondary};
+    background-color: ${({ theme }) => theme.scrollBar.thumb};
     width: 5px;
     border-radius: 20px;
   }
@@ -104,14 +106,17 @@ export const MessageInputContainer = styled.div<MessageInputContainerProps>`
   box-sizing: border-box;
   background-color: ${({ theme }) =>
     theme.messagePanel.inputContainer.backgroundColor};
-  border-radius: 5px;
+  border-radius: 8.47407px;
+  border: ${({ theme }) =>
+    "0.52963px solid " + theme.messagePanel.inputContainer.borderColor};
   width: 100%;
-  padding: 18px 32px;
+  padding: 13px 32px;
   display: flex;
   gap: 20px;
-  align-items: ${({ isMultiLine }) => (isMultiLine ? "top" : "center")};
+  align-items: top;
   position: relative;
 `;
+//${({ isMultiLine }) => (isMultiLine ? "top" : "center")}
 
 export const MessageTextarea = styled.textarea`
   background-color: inherit;
@@ -163,12 +168,12 @@ export const GroupHeaderIcons = styled.div`
 `;
 
 export const MessagePanelHeaderStyle = styled.header`
-  height: 90px;
+  height: 83px;
   padding: 10px 32px;
   box-sizing: border-box;
   width: 100%;
   flex-shrink: 0;
-  border-bottom: 1px solid #49494925;
+  border-bottom: ${({ theme }) => theme.border.primary};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -179,15 +184,15 @@ export const MessageAttachmentContainerStyle = styled.div`
   display: flex;
   overflow-x: scroll;
   gap: 10px;
-  margin: 10px 0;
+  margin-bottom: 10px;
   &::-webkit-scrollbar {
     height: 6px;
   }
   &::-webkit-scrollbar-track {
-    background-color: #101010;
+    background-color: ${({ theme }) => theme.scrollBar.track};
   }
   &::-webkit-scrollbar-thumb {
-    background-color: #1c1c1c;
+    background-color: ${({ theme }) => theme.scrollBar.thumb};
     border-radius: 5px;
   }
 `;
@@ -196,9 +201,9 @@ export const MessageAttachmentStyle = styled.div`
   box-sizing: border-box;
   padding: 50px 0 0 0;
   position: relative;
-  max-height: 300px;
-  height: 300px;
-  background-color: #161616;
+  max-height: 250px;
+  height: 250px;
+  background-color: ${({ theme }) => theme.background.hover};
   margin: 10px 0;
   border-radius: 10px;
   display: flex;

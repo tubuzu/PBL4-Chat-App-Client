@@ -30,7 +30,11 @@ export const UpdatePresenceStatusModal: FC<ModalProps> = ({ setShowModal }) => {
       <ModalContainer>
         <ModalHeader>
           <h2>Set Custom Status</h2>
-          <MdClose size={32} onClick={() => setShowModal(false)} />
+          <MdClose
+            size={32}
+            onClick={() => setShowModal(false)}
+            style={{ cursor: "pointer" }}
+          />
         </ModalHeader>
         <ModalContentBody>
           <UpdateUserStatusForm setShowModal={setShowModal} />

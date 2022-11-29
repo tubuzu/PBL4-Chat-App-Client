@@ -1,5 +1,4 @@
 import {
-  ArrowCycle,
   ChatDots,
   Crown,
   Minus,
@@ -55,8 +54,6 @@ export const getUserSidebarIcon = (_id: UserSidebarRouteType) => {
       return ChatDots;
     case 'friends':
       return Person;
-    case 'connections':
-      return ArrowCycle;
     case 'settings':
       return Gear;
     default:

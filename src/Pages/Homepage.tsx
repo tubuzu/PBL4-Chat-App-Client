@@ -8,6 +8,7 @@ import { RootState } from "src/store";
 import { useSelector } from "react-redux";
 import { DarkTheme, LightTheme } from "src/utils/themes";
 import { SocketContext } from "src/utils/context/SocketContext";
+import NotificationWrapper from "./Notification/NotificationWrapper";
 
 const Homepage = () => {
   const storageTheme = localStorage.getItem("theme") as SelectableTheme;
@@ -23,22 +24,24 @@ const Homepage = () => {
   }, []);
 
   return (
-    <ThemeProvider
-      theme={
-        storageTheme
-          ? storageTheme.localeCompare("dark")
+    <NotificationWrapper>
+      <ThemeProvider
+        theme={
+          storageTheme
+            ? storageTheme.localeCompare("dark")
+              ? DarkTheme
+              : LightTheme
+            : theme === "dark"
             ? DarkTheme
             : LightTheme
-          : theme === "dark"
-          ? DarkTheme
-          : LightTheme
-      }
-    >
-      <Box sx={{ display: "flex", height: "100vh", width: "100vw" }}>
-        <UserSidebar />
-        <Outlet />
-      </Box>
-    </ThemeProvider>
+        }
+      >
+        <Box sx={{ display: "flex", height: "100vh", width: "100vw" }}>
+          <UserSidebar />
+          <Outlet />
+        </Box>
+      </ThemeProvider>
+    </NotificationWrapper>
   );
 };
 

@@ -79,9 +79,10 @@ export const ForwardConversationItem: FC<Props> = ({
         </span>
       </ConversationSidebarItemDetails>
       {sended && !loading ? (
-        <Box sx={{ padding: "10px 8px 10px 12px" }}>
-          <TiTick style={{ color: "#80eb81", fontSize: "2rem" }} />
-        </Box>
+        <ButtonForward disabled>
+          {/* <TiTick style={{ color: "#80eb81", fontSize: "2rem" }} /> */}
+          Sent
+        </ButtonForward>
       ) : sended && loading ? (
         <Box sx={{ padding: "10px 8px 10px 12px" }}>
           <AiOutlineLoading3Quarters
@@ -90,7 +91,8 @@ export const ForwardConversationItem: FC<Props> = ({
         </Box>
       ) : (
         <ButtonForward onClick={handleForward}>
-          <IoMdSend style={{ color: "#ffffff", fontSize: "2rem" }} />
+          {/* <IoMdSend style={{ color: "#ffffff", fontSize: "2rem" }} /> */}
+          Send
         </ButtonForward>
       )}
     </ConversationSidebarItemStyle>

@@ -28,7 +28,7 @@ export const ConversationSelectedItem = styled.div<ConversationSelectedProps>`
 export const ConversationTabStyle = styled.section`
   display: flex;
   gap: 20px;
-  margin: 14px 18px;
+  margin: 18px 22px;
 `;
 
 export const ConversationTabItemStyle = styled.section<ConversationSelectedProps>`
@@ -41,9 +41,12 @@ export const ConversationTabItemStyle = styled.section<ConversationSelectedProps
   text-transform: uppercase;
   padding: 8px 18px;
   border-radius: 5px;
+  &:hover {
+    background-color: #2b2b2b;
+  }
   ${({ selected }) =>
     selected &&
     css`
-      background-color: #383838;
+      background-color: #424242 !important;
     `};
 `;

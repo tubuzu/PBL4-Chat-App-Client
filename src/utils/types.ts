@@ -233,7 +233,6 @@ export type AcceptFriendRequestResponse = {
 export type UserSidebarRouteType =
     | 'conversations'
     | 'friends'
-    | 'connections'
     | 'settings';
 
 export type UserSidebarItemType = {
@@ -284,6 +283,12 @@ export type SystemMessageType = {
     _id: number;
     content: string;
     level: SystemMessageLevel;
+};
+
+export type SystemNotificationLevel = 'success' | 'error' | 'info';
+export type SystemNotificationType = {
+    content: string;
+    level: SystemNotificationLevel;
 };
 
 export type UpdateStatusParams = {

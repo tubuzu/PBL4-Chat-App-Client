@@ -82,6 +82,7 @@ export const ForwardMessageModal = () => {
             size={32}
             onClick={() => dispatch(setIsForwarding(false))}
             color={theme.text.primary}
+            style={{ cursor: "pointer" }}
           />
         </ModalHeader>
         <ModalContentBody>

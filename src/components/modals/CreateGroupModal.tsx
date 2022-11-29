@@ -35,7 +35,7 @@ export const CreateGroupModal: FC<Props> = ({ setShowModal }) => {
       <ModalContainer>
         <ModalHeader>
           <h2>Create a Group</h2>
-          <MdClose size={32} onClick={() => setShowModal(false)} />
+          <MdClose size={32} onClick={() => setShowModal(false)} style={{ cursor: "pointer" }} />
         </ModalHeader>
         <ModalContentBody>
           <CreateGroupForm setShowModal={setShowModal} />

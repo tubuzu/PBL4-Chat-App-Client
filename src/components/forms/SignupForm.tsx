@@ -2,25 +2,26 @@ import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
-import { useToast } from "@chakra-ui/toast";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { AppDispatch } from "src/store";
 import { registerThunk } from "src/store/authenticationSlice";
+import { useToastHook } from "src/utils/hooks/useToast";
 
-const Signup = () => {
+const SignupForm = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-  const toast = useToast();
+  const { success, error } = useToastHook();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const [username, setUsername] = useState();
-  const [firstname, setFirstname] = useState();
-  const [lastname, setLastname] = useState();
-  const [email, setEmail] = useState();
-  const [confirmpassword, setConfirmpassword] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState<string>("");
+  const [firstname, setFirstname] = useState<string>("");
+  const [lastname, setLastname] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [confirmpassword, setConfirmpassword] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   // const [rawAvatar, setRawAvatar] = useState();
   // const [avatar, setAvatar] = useState();
   const [loading, setLoading] = useState(false);
@@ -47,25 +48,28 @@ const Signup = () => {
     //     setAvatarLoading(false);
     //     return '';
     //   });
-    if (!username || !firstname || !lastname || !email || !password || !confirmpassword) {
-      toast({
-        title: "Please Fill all the Fields",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "top",
-      });
+    if (
+      !username ||
+      !firstname ||
+      !lastname ||
+      !email ||
+      !password ||
+      !confirmpassword
+    ) {
+      error("Please Fill all the Fields");
       setLoading(false);
       return;
     }
+
+    if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+      error("Email is Invalid");
+      setLoading(false);
+      return;
+    }
+
     if (password !== confirmpassword) {
-      toast({
-        title: "Passwords Do Not Match",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "top",
-      });
+      error("Passwords Do Not Match");
+      setLoading(false);
       return;
     }
 
@@ -73,28 +77,15 @@ const Signup = () => {
       .unwrap()
       .then(({ data }) => {
         console.log(data);
-        toast({
-          title: "Registration Successful",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-          position: "top",
-        });
+        success("Registration Successful");
         setLoading(false);
         navigate("/home/conversations");
       })
-      .catch((err) => {
-        console.log(err);
-        toast({
-          title: "Error Occured!",
-          description: err.response.data.message,
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-          position: "top",
-        });
+      .catch((error) => {
+        console.log(error);
+        // error(error.message);
         setLoading(false);
-      })
+      });
   };
 
   // const postDetails = (ava) => {
@@ -127,8 +118,8 @@ const Signup = () => {
         <FormLabel color="white">Username</FormLabel>
         <Input
           variant="filled"
-          sx={{ backgroundColor: 'var(--input-background)', color: 'white' }}
-          _hover={{ backgroundColor: 'var(--input-background)' }}
+          sx={{ backgroundColor: "var(--input-background)", color: "white" }}
+          _hover={{ backgroundColor: "var(--input-background)" }}
           placeholder="Enter Your User Name"
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -137,8 +128,8 @@ const Signup = () => {
         <FormLabel color="white">First name</FormLabel>
         <Input
           variant="filled"
-          sx={{ backgroundColor: 'var(--input-background)', color: 'white' }}
-          _hover={{ backgroundColor: 'var(--input-background)' }}
+          sx={{ backgroundColor: "var(--input-background)", color: "white" }}
+          _hover={{ backgroundColor: "var(--input-background)" }}
           placeholder="Enter Your First Name"
           onChange={(e) => setFirstname(e.target.value)}
         />
@@ -147,8 +138,8 @@ const Signup = () => {
         <FormLabel color="white">Last name</FormLabel>
         <Input
           variant="filled"
-          sx={{ backgroundColor: 'var(--input-background)', color: 'white' }}
-          _hover={{ backgroundColor: 'var(--input-background)' }}
+          sx={{ backgroundColor: "var(--input-background)", color: "white" }}
+          _hover={{ backgroundColor: "var(--input-background)" }}
           placeholder="Enter Your Last Name"
           onChange={(e) => setLastname(e.target.value)}
         />
@@ -157,8 +148,8 @@ const Signup = () => {
         <FormLabel color="white">Email Address</FormLabel>
         <Input
           variant="filled"
-          sx={{ backgroundColor: 'var(--input-background)', color: 'white' }}
-          _hover={{ backgroundColor: 'var(--input-background)' }}
+          sx={{ backgroundColor: "var(--input-background)", color: "white" }}
+          _hover={{ backgroundColor: "var(--input-background)" }}
           type="email"
           placeholder="Enter Your Email Address"
           onChange={(e) => setEmail(e.target.value)}
@@ -169,14 +160,23 @@ const Signup = () => {
         <InputGroup size="md">
           <Input
             variant="filled"
-            sx={{ backgroundColor: 'var(--input-background)', color: 'white' }}
-            _hover={{ backgroundColor: 'var(--input-background)' }}
+            sx={{ backgroundColor: "var(--input-background)", color: "white" }}
+            _hover={{ backgroundColor: "var(--input-background)" }}
             type={show ? "text" : "password"}
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <InputRightElement width="4.5rem">
-            <Button sx={{ backgroundColor: 'var(--main-form-background)', color: 'white' }} _hover={{ backgroundColor: '#5f5f5f' }} h="1.75rem" size="sm" onClick={handleClick}>
+            <Button
+              sx={{
+                backgroundColor: "var(--main-form-background)",
+                color: "white",
+              }}
+              _hover={{ backgroundColor: "#5f5f5f" }}
+              h="1.75rem"
+              size="sm"
+              onClick={handleClick}
+            >
               {show ? "Hide" : "Show"}
             </Button>
           </InputRightElement>
@@ -187,14 +187,23 @@ const Signup = () => {
         <InputGroup size="md">
           <Input
             variant="filled"
-            sx={{ backgroundColor: 'var(--input-background)', color: 'white' }}
-            _hover={{ backgroundColor: 'var(--input-background)' }}
+            sx={{ backgroundColor: "var(--input-background)", color: "white" }}
+            _hover={{ backgroundColor: "var(--input-background)" }}
             type={show ? "text" : "password"}
             placeholder="Confirm password"
             onChange={(e) => setConfirmpassword(e.target.value)}
           />
           <InputRightElement width="4.5rem">
-            <Button sx={{ backgroundColor: 'var(--main-form-background)', color: 'white' }} _hover={{ backgroundColor: '#5f5f5f' }} h="1.75rem" size="sm" onClick={handleClick}>
+            <Button
+              sx={{
+                backgroundColor: "var(--main-form-background)",
+                color: "white",
+              }}
+              _hover={{ backgroundColor: "#5f5f5f" }}
+              h="1.75rem"
+              size="sm"
+              onClick={handleClick}
+            >
               {show ? "Hide" : "Show"}
             </Button>
           </InputRightElement>
@@ -229,4 +238,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupForm;

@@ -2,11 +2,11 @@ import { ConversationSidebarItemProps, SettingsSidebarItemProps } from "src/util
 import styled from "styled-components";
 
 export const SidebarHeader = styled.header`
-  height: 90px;
-  padding: 10px 30px;
+  height: 83px;
+  padding: 10px 22px;
   box-sizing: border-box;
   flex-shrink: 0;
-  border-bottom: 1px solid #49494925;
+  border-bottom: ${({theme}) => theme.border.primary};
   display: flex;
   align-items: center;
   gap: 20px;
@@ -27,6 +27,7 @@ export const SidebarStyle = styled.div`
   height: 100%;
   width: 400px;
   background-color: ${({ theme }) => theme.conversationSidebar.backgroundColor};
+  border-right: ${({ theme }) => theme.border.primary};
   flex: 0 0 auto;
   @media (max-width: 800px) {
     width: calc(100% - 80px);
@@ -44,6 +45,9 @@ export const ConversationSearchbar = styled.input`
   font-family: "Inter";
   border-radius: 5px;
   box-sizing: border-box;
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fff;
+  }
 `;
 
 export const ConversationSidebarItemDetails = styled.div`
@@ -62,7 +66,6 @@ export const ConversationSidebarItemDetails = styled.div`
   & .conversationLastMessage {
     font-size: 15px;
     font-weight: 500;
-    color: #868686;
     color: ${({ theme }) =>
       theme.conversationSidebar.conversationItem.title.lastMessageColor};
   }
@@ -72,7 +75,7 @@ export const ConversationSidebarItemStyle = styled.div<ConversationSidebarItemPr
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 20px 32px;
+  padding: 12px 22px;
   box-sizing: border-box;
   width: 100%;
   background-color: ${({ selected, theme }) =>
@@ -132,13 +135,13 @@ export const GroupRecipientSidebarItem = styled.div<GroupRecipientSidebarItemPro
 `;
 
 export const GroupRecipientsSidebarHeader = styled.div`
-  height: 90px;
+  height: 83px;
   padding: 10px 32px;
   box-sizing: border-box;
   width: 100%;
   flex-shrink: 0;
   color: ${({ theme }) => theme.text.primary};
-  border-bottom: 1px solid #49494925;
+  border-bottom: ${({ theme }) => theme.border.primary};
   display: flex;
   align-items: center;
   gap: 20px;
@@ -153,7 +156,8 @@ export const GroupRecipientsSidebarStyle = styled.aside`
   flex-direction: column;
   height: 100%;
   width: 350px;
-  background-color: ${({ theme }) => theme.background.secondary};
+  background-color: ${({ theme }) => theme.background.primary};
+  border-left: ${({theme}) => theme.border.primary};
   flex: 0 0 auto;
 `;
 

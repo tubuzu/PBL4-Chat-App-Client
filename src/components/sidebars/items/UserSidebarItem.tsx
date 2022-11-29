@@ -1,12 +1,10 @@
 import React, { FC } from "react";
-// import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { getUserSidebarIcon } from "../../../utils/helpers";
 import { UserSidebarItemType } from "../../../utils/types";
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { SidebarItemProps } from "src/utils/styleTypes";
-// import { IRootState } from "src/store/reducers";
 
 export const UserSidebarItemStyle = styled.div<SidebarItemProps>`
   width: 100%;
@@ -15,15 +13,16 @@ export const UserSidebarItemStyle = styled.div<SidebarItemProps>`
   justify-content: center;
   padding: 20px 18px;
   box-sizing: border-box;
-  background-color: ${({ active }) => active && '#2b2b2b'};
+  background-color: ${({ active, theme }) => active && theme.userSidebar.userSidebarItem.selected};
   position: relative;
+  cursor: pointer;
   &:hover {
-    background-color: #1e1e1e;
+    background-color: ${({ theme }) => theme.userSidebar.userSidebarItem.hover.backgroundColor};
   }
 `;
 
 export const IconBadge = styled.div`
-  background-color: #ff3535;
+  background-color: #d7d3d3;
   height: 20px;
   width: 20px;
   border-radius: 5px;
@@ -60,7 +59,7 @@ export const UserSidebarItem: FC<Props> = ({ item }) => {
       onClick={() => navigate(item.pathname)}
       active={isActive()}
     >
-      <Icon size={ICON_SIZE} strokeWidth={STROKE_WIDTH} stroke="white" />
+      <Icon size={ICON_SIZE} strokeWidth={STROKE_WIDTH} stroke="#d7d3d3" />
       {/* {item.id === "friends" && friendRequests.length > 0 && (
         <IconBadge>
           {friendRequests.length > 9 ? "10+" : friendRequests.length}

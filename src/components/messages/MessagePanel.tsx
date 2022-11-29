@@ -33,9 +33,9 @@ export const MessagePanel: FC<Props> = ({
   isRecipientTyping,
 }) => {
   const dispatch = useDispatch();
-  const { messageCounter } = useSelector(
-    (state: RootState) => state.systemMessages
-  );
+  // const { messageCounter } = useSelector(
+  //   (state: RootState) => state.systemMessages
+  // );
   const [content, setContent] = useState("");
   const { id: routeId } = useParams();
   const user = useSelector((state: RootState) => state.authentication.userData);
@@ -78,26 +78,27 @@ export const MessagePanel: FC<Props> = ({
       // dispatch(removeAllAttachments());
       // dispatch(clearAllMessages());
     } catch (err) {
-      const axiosError = err as AxiosError;
-      if (axiosError.response?.status === 429) {
-        error("You are rate limited");
-        dispatch(
-          addSystemMessage({
-            _id: messageCounter,
-            level: "error",
-            content: "You are being rate limited. Slow down.",
-          })
-        );
-      } else if (axiosError.response?.status === 404) {
-        dispatch(
-          addSystemMessage({
-            _id: messageCounter,
-            level: "error",
-            content:
-              "The recipient is not in your friends list or they may have blocked you.",
-          })
-        );
-      }
+      console.log(err);
+      // const axiosError = err as AxiosError;
+      // if (axiosError.response?.status === 429) {
+      //   error("You are rate limited");
+      //   dispatch(
+      //     addSystemMessage({
+      //       _id: messageCounter,
+      //       level: "error",
+      //       content: "You are being rate limited. Slow down.",
+      //     })
+      //   );
+      // } else if (axiosError.response?.status === 404) {
+      //   dispatch(
+      //     addSystemMessage({
+      //       _id: messageCounter,
+      //       level: "error",
+      //       content:
+      //         "The recipient is not in your friends list or they may have blocked you.",
+      //     })
+      //   );
+      // }
     }
   };
 
@@ -109,6 +110,9 @@ export const MessagePanel: FC<Props> = ({
           <MessageContainer />
         </MessagePanelBody>
         <MessagePanelFooter>
+          <MessageTypingStatus>
+            {isRecipientTyping ? `${recipient?.firstname} is typing...` : ""}
+          </MessageTypingStatus>
           {attachments.length > 0 && <MessageAttachmentContainer />}
           <MessageInputField
             content={content}
@@ -121,9 +125,6 @@ export const MessagePanel: FC<Props> = ({
                 : recipient?.firstname || "user"
             }
           />
-          <MessageTypingStatus>
-            {isRecipientTyping ? `${recipient?.firstname} is typing...` : ""}
-          </MessageTypingStatus>
         </MessagePanelFooter>
       </MessagePanelStyle>
     </>

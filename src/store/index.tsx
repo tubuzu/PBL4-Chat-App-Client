@@ -9,9 +9,8 @@ import groupSidebarReducer from './groupRecipientsSidebarSlice';
 import friendsReducer from './friends/friendsSlice';
 import rateLimitReducer from './rate-limit/rateLimitSlice';
 import messagePanelReducer from './message-panel/messagePanelSlice';
-import systemMessageReducer from './system-messages/systemMessagesSlice';
+import systemNotificationReducer from './system-notification/systemNotificationSlice';
 import settingsReducer from './settings/settingsSlice';
-// import callReducer from './call/callSlice';
 import authenticationReducer from './authenticationSlice';
 
 export const store = configureStore({
@@ -26,9 +25,8 @@ export const store = configureStore({
     groupSidebar: groupSidebarReducer,
     rateLimit: rateLimitReducer,
     messagePanel: messagePanelReducer,
-    systemMessages: systemMessageReducer,
+    systemNotification: systemNotificationReducer,
     settings: settingsReducer,
-    // call: callReducer,
     authentication: authenticationReducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -36,7 +34,5 @@ export const store = configureStore({
   devTools: true,
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;

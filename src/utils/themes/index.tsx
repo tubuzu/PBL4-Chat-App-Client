@@ -9,10 +9,24 @@ export type Theme = {
     primary: string;
     secondary: string;
     tertiary: string;
+    hover: string;
+  };
+  border: {
+    primary: string;
+  };
+  scrollBar: {
+    track: string;
+    thumb: string;
   };
   userSidebar: {
     backgroundColor: string;
     color: string;
+    userSidebarItem: {
+      selected: string;
+      hover: {
+        backgroundColor: string;
+      };
+    };
   };
   conversationSidebar: {
     backgroundColor: string;
@@ -41,6 +55,7 @@ export type Theme = {
     };
     inputContainer: {
       backgroundColor: string;
+      borderColor: string;
       color: string;
     };
   };
@@ -59,34 +74,48 @@ export type Theme = {
 
 export const DarkTheme: Theme = {
   background: {
-    primary: "#0b0b0b",
+    primary: "#161616", // 1E1D1D
     secondary: "#111",
     tertiary: "#141414",
+    hover: "#3d3d3d",
   },
   text: {
     primary: "#fff",
     secondary: "#5f5f5f",
   },
+  border: {
+    primary: '0.4px solid #3d3d3d',
+  },
+  scrollBar: {
+    track: "#111",
+    thumb: "#3d3d3d",
+  },
   userSidebar: {
-    backgroundColor: "#0b0b0b",
+    backgroundColor: "#161616",
     color: "#fff",
+    userSidebarItem: {
+      selected: "#3d3d3d !important",
+      hover: {
+        backgroundColor: "#2b2b2b",
+      }
+    }
   },
   conversationSidebar: {
-    backgroundColor: "#111",
+    backgroundColor: "#161616",
     color: "#fff",
     conversationItem: {
-      selected: "#1a1a1a",
+      selected: "#3d3d3d !important",
       hover: {
-        backgroundColor: "#222",
+        backgroundColor: "#202020",
       },
       title: {
         color: "#fff",
-        lastMessageColor: "#515151",
+        lastMessageColor: "#9f9a9a",
       },
     },
   },
   messagePanel: {
-    backgroundColor: "#141414",
+    backgroundColor: "#161616",
     color: "#fff",
     header: {
       title: "#fff",
@@ -97,7 +126,8 @@ export const DarkTheme: Theme = {
       },
     },
     inputContainer: {
-      backgroundColor: "#101010",
+      backgroundColor: "#212223",
+      borderColor: "#3d3d3d",
       color: "#fff",
     },
   },
@@ -109,7 +139,7 @@ export const DarkTheme: Theme = {
     backgroundColor: "#1a1a1a",
   },
   input: {
-    backgroundColor: "#202020",
+    backgroundColor: "#6b67677d",
     color: "#fff",
   },
 };
@@ -119,14 +149,28 @@ export const LightTheme: Theme = {
     primary: "#C1C1C1",
     secondary: "#fff",
     tertiary: "#ededed",
+    hover: "",
   },
   text: {
     primary: "#000",
     secondary: "#636363",
   },
+  border: {
+    primary: '0.4px solid #3d3d3d',
+  },
+  scrollBar: {
+    track: "",
+    thumb: "",
+  },
   userSidebar: {
     backgroundColor: "#15161E",
     color: "#fff",
+    userSidebarItem: {
+      selected: "",
+      hover: {
+        backgroundColor: "",
+      }
+    }
   },
   conversationSidebar: {
     backgroundColor: "#fff",
@@ -155,6 +199,7 @@ export const LightTheme: Theme = {
     },
     inputContainer: {
       backgroundColor: "#fff",
+      borderColor: "#3d3d3d",
       color: "#000",
     },
   },

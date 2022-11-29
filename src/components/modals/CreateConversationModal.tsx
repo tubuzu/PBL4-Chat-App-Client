@@ -41,6 +41,7 @@ export const CreateConversationModal: FC<Props> = ({ setShowModal }) => {
             size={32}
             onClick={() => setShowModal(false)}
             color={theme.text.primary}
+            style={{ cursor: "pointer" }}
           />
         </ModalHeader>
         <ModalContentBody>

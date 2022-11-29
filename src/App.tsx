@@ -64,11 +64,11 @@ function App() {
               </Route>
               <Route path="friends" element={<FriendsLayoutPage />}>
                 <Route path="requests" element={<FriendRequestPage />} />
-                {/* <Route path="blocked" element={<div>Blocked</div>} /> */}
               </Route>
               <Route path="settings" element={<SettingsPage />}>
                 <Route path="profile" element={<SettingsProfilePage />} />
               </Route>
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

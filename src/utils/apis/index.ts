@@ -5,12 +5,28 @@ import { ConversationType, CreateMessageParams, DeleteGroupMessageParams, Delete
 const API_URL = process.env.REACT_APP_API_URL;
 
 export const axiosClient = axios.create({ baseURL: API_URL });
+axiosClient.interceptors.request.use((config) => {
+    if (config.headers)
+        config.headers.Authorization = "Bearer ".concat(getToken()!)
+    return config
+})
+// axiosClient.interceptors.response.use(async (response) => {
+//     return response;
+// }, async (err) => {
+//     // const {error} = useToastHook();
+//     // error(err.response.data.msg)
+//     if(typeof store !== 'undefined') store.dispatch(setSystemNotification({
+//         level: "error",
+//         content: err.response.data.msg,
+//     }))
+//     return Promise.reject(err);
+// })
 
 export const config = () => {
     return {
         headers: {
             "Content-type": "application/json",
-            "Authorization": `${"Bearer ".concat(getToken()!)}`,
+            // "Authorization": `${"Bearer ".concat(getToken()!)}`,
         },
     }
 };
@@ -19,7 +35,7 @@ export const formConfig = () => {
     return {
         headers: {
             "Content-Type": "multipart/form-data",
-            "Authorization": `${"Bearer ".concat(getToken()!)}`,
+            // "Authorization": `${"Bearer ".concat(getToken()!)}`,
         },
     }
 }

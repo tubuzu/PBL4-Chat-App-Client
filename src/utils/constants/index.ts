@@ -65,17 +65,9 @@ export const userSidebarItems: UserSidebarItemType[] = [
         pathname: '/home/friends',
     },
     {
-        _id: 'connections',
-        pathname: '/home/connections',
-    },
-    {
         _id: 'settings',
         pathname: '/home/settings',
     },
-    // {
-    //     id: 'calls',
-    //     pathname: '/home/calls',
-    // },
 ];
 
 export const settingsItems: SettingsItemType[] = [
@@ -105,9 +97,3 @@ export const settingsItems: SettingsItemType[] = [
         pathname: '/home/settings/appearance',
     },
 ];
-
-export enum CDN_URL {
-    BASE = 'https://chuachat.ams3.cdn.digitaloceanspaces.com/',
-    ORIGINAL = 'https://chuachat.ams3.cdn.digitaloceanspaces.com/original/',
-    PREVIEW = 'https://chuachat.ams3.digitaloceanspaces.com/preview/',
-}

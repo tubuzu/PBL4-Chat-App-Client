@@ -45,10 +45,11 @@ export const MessageItemContainerBody: FC<Props> = ({
             {message?.content?.length! && (
               <Box
                 sx={{
-                  padding: "12px",
-                  borderRadius: "23px",
-                  backgroundColor: isUserMsg ? "#ffffff" : "#2b2b2b",
-                  color: isUserMsg ? "#000000" : "#ffffff",
+                  maxWidth: '60%',
+                  padding: "8px 15px",
+                  borderRadius: "4px",
+                  backgroundColor: isUserMsg ? "#D4EBFB" : "rgba(255, 252, 252, 0.18)",
+                  color: isUserMsg ? "#242424" : "#FAFAFA",
                 }}
               >
                 {message.content}

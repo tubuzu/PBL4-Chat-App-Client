@@ -40,6 +40,7 @@ export const AddGroupRecipientModal: FC<Props> = ({
             cursor="pointer"
             size={32}
             onClick={() => setShowModal(false)}
+            style={{cursor: 'pointer'}}
           />
         </ModalHeader>
         <ModalContentBody>

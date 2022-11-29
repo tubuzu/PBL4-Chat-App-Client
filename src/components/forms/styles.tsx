@@ -7,7 +7,7 @@ export const Button = styled.button`
   border: none;
   font-family: 'Inter';
   font-size: 16px;
-  background-color: #2b09ff;
+  background-color: #0c6930;
   color: #fff;
   border-radius: 10px;
   padding: 25px 0;
@@ -15,14 +15,13 @@ export const Button = styled.button`
   transition: 250ms background-color ease;
   &:hover {
     cursor: pointer;
-    background-color: #3415ff;
+    background-color: #1da953;
   }
   &:active {
-    background-color: #3a1cff;
+    background-color: #1da953;
   }
   &:disabled {
-    background-color: #4937bc7c;
-    color: #878787a2;
+    background-color: #3c8558;
     cursor: not-allowed;
   }
 `;

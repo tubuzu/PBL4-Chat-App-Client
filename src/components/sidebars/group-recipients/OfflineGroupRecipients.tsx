@@ -1,16 +1,13 @@
 import { Crown } from "akar-icons";
 import React, { FC } from "react";
 import { GroupRecipientSidebarItem } from "../styles";
-import { Group, User } from "../../../utils/types";
+import { ContextMenuEvent, Group, User } from "../../../utils/types";
 import { UserAvatar } from "../../users/UserAvatar";
 
 type Props = {
   onlineUsers: User[];
   group?: Group;
-  onUserContextMenu: (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    user: User
-  ) => void;
+  onUserContextMenu: (e: ContextMenuEvent, user: User) => void;
 };
 
 export const OfflineGroupRecipients: FC<Props> = ({

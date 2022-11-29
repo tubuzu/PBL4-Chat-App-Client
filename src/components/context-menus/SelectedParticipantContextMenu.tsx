@@ -37,6 +37,13 @@ export const SelectedParticipantContextMenu: FC<Props> = ({ points }) => {
     selectGroupById(state, id!)
   );
 
+  const seeProfile = () => {
+    console.log(`See profile User: ${selectedUser?._id}`);
+    if (!selectedUser) return;
+
+    
+  }
+
   const kickUser = () => {
     console.log(`Kicking User: ${selectedUser?._id}`);
     console.log(selectedUser);

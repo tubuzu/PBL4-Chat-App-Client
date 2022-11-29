@@ -143,7 +143,7 @@ export const MessageContainer = () => {
       }}
     >
       <>
-        <SystemMessageList />
+        {/* <SystemMessageList /> */}
         {selectedType === "private"
           ? conversationMessages?.messages.map(mapMessages)
           : groupMessages?.messages.map(mapMessages)}

@@ -5,7 +5,8 @@ import {
   MessageAttachmentContainerStyle,
   MessageAttachmentStyle,
 } from "../styles";
-import { RiDeleteBin6Fill } from "react-icons/ri";
+// import { RiDeleteBin6Fill } from "react-icons/ri";
+import { TiDelete } from "react-icons/ti";
 import { MessageImageCanvas } from "./MessageImageCanvas";
 import { Attachment } from "src/utils/types";
 import { removeAttachment } from "src/store/message-panel/messagePanelSlice";
@@ -28,10 +29,10 @@ export const MessageAttachmentContainer = () => {
           }}
         >
           <MessageImageCanvas file={attachment.file} />
-          <RiDeleteBin6Fill
-            color="red"
-            style={{ position: "absolute", zIndex: 1, right: 15, top: 10 }}
-            size={30}
+          <TiDelete
+            color="white"
+            style={{ position: "absolute", zIndex: 1, right: 0, top: 0, cursor: "pointer" }}
+            size={40}
             onClick={() => onDeleteAttachment(attachment)}
           />
           <div>{attachment.file.name}</div>

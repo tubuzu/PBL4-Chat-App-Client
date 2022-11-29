@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { CDN_URL } from "../../../utils/constants";
 import { getRecipientFromConversation } from "../../../utils/helpers";
 import {
   ConversationSidebarItemDetails,
@@ -53,8 +52,7 @@ export const ConversationSidebarItem: React.FC<Props> = ({ conversation }) => {
           src={
             hasProfilePicture()
               ? recipient?.avatar?.url!
-              : // ? CDN_URL.BASE.concat(recipient?.avatar!)
-                defaultAvatar
+              : defaultAvatar
           }
           alt="avatar"
           className={styles.conversationAvatar}

@@ -1,11 +1,10 @@
 import React, { FC, useState } from "react";
 import { MdClose } from "react-icons/md";
-// import { CDN_URL } from '../../../utils/constants';
 import { useKeydown } from "../../../utils/hooks";
 import { OverlayStyle } from "src/components/modals/styles";
 import { GroupMessageType, MessageType } from "../../../utils/types";
 import styles from "./index.module.scss";
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 
 type alignType = "left" | "right";
 

@@ -12,8 +12,7 @@ export const UserAvatar: FC<Props> = ({ user }) => {
     const { avatar } = user;
     return avatar
       ? avatar.url
-      : // ? CDN_URL.BASE.concat(avatar)
-        defaultAvatar;
+      : defaultAvatar;
   };
 
   return <UserAvatarContainer src={getProfilePicture()} alt="avatar" />;
