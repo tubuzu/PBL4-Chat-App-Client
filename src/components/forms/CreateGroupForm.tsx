@@ -3,7 +3,7 @@ import { GroupRecipientsField } from '../recipients/GroupRecipientsField';
 import {
   InputContainer,
   InputLabel,
-  TextField,
+  // TextField,
   Button,
   RecipientChipContainer,
   InputField,
@@ -25,7 +25,7 @@ type Props = {
 
 export const CreateGroupForm: FC<Props> = ({ setShowModal }) => {
   const [title, setTitle] = useState('');
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<User[]>([]);
   const [selectedRecipients, setSelectedRecipients] = useState<User[]>([]);
@@ -95,7 +95,7 @@ export const CreateGroupForm: FC<Props> = ({ setShowModal }) => {
           />
         </InputContainer>
       </section>
-      <section className={styles.message}>
+      {/* <section className={styles.message}>
         <InputContainer backgroundColor="#161616">
           <InputLabel>Message (optional)</InputLabel>
           <TextField
@@ -103,7 +103,7 @@ export const CreateGroupForm: FC<Props> = ({ setShowModal }) => {
             onChange={(e) => setMessage(e.target.value)}
           />
         </InputContainer>
-      </section>
+      </section> */}
       <Button>Create Conversation</Button>
     </form>
   );

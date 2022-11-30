@@ -36,7 +36,7 @@ export const ForwardMessageModal = () => {
 
   const user = useSelector((state: RootState) => state.authentication.userData);
   let conversations = useSelector(
-    (state: RootState) => state.conversation.conversations
+    (state: RootState) => state.conversations.conversations
   );
   conversations = conversations.filter((conv) => conv._id !== id);
   let groups = useSelector((state: RootState) => state.groups.groups);

@@ -5,7 +5,7 @@ import {
   ConversationSidebarItemDetails,
   ConversationSidebarItemStyle,
 } from "../styles";
-import { Conversation } from "../../../utils/types";
+import { ContextMenuEvent, Conversation } from "../../../utils/types";
 import defaultAvatar from "src/assets/default_avatar.jpg";
 
 import styles from "../index.module.scss";
@@ -14,9 +14,13 @@ import { RootState } from "src/store";
 
 type Props = {
   conversation: Conversation;
+  onContextMenu: (event: ContextMenuEvent, group: Conversation) => void;
 };
 
-export const ConversationSidebarItem: React.FC<Props> = ({ conversation }) => {
+export const ConversationSidebarItem: React.FC<Props> = ({
+  conversation,
+  onContextMenu,
+}) => {
   const MESSAGE_LENGTH_MAX = 50;
   const { id } = useParams();
   const user = useSelector((state: RootState) => state.authentication.userData);
@@ -46,14 +50,11 @@ export const ConversationSidebarItem: React.FC<Props> = ({ conversation }) => {
     <>
       <ConversationSidebarItemStyle
         onClick={() => navigate(`/home/conversations/${conversation._id}`)}
+        onContextMenu={(e) => onContextMenu(e, conversation)}
         selected={id! === conversation._id}
       >
         <img
-          src={
-            hasProfilePicture()
-              ? recipient?.avatar?.url!
-              : defaultAvatar
-          }
+          src={hasProfilePicture() ? recipient?.avatar?.url! : defaultAvatar}
           alt="avatar"
           className={styles.conversationAvatar}
         />

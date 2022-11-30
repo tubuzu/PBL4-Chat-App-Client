@@ -1,16 +1,21 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Conversation, CreateConversationParams } from '../utils/types';
+import { Conversation, CreateConversationParams, Points } from '../utils/types';
 import { getConversations, postNewConversation } from 'src/Pages/Conversation/queries';
 import { RootState } from '.';
 
 export interface ConversationsState {
   conversations: Conversation[];
+  showContextMenu: boolean;
+  selectedContextMenu?: Conversation;
+  points: Points;
   loading: boolean;
 }
 
 const initialState: ConversationsState = {
   conversations: [],
+  showContextMenu: false,
+  points: { x: 0, y: 0 },
   loading: false,
 };
 
@@ -40,6 +45,15 @@ export const conversationsSlice = createSlice({
       state.conversations.splice(index, 1);
       state.conversations.unshift(conversation);
     },
+    toggleContextMenu: (state, action: PayloadAction<boolean>) => {
+      state.showContextMenu = action.payload;
+    },
+    setSelectedConversation: (state, action: PayloadAction<Conversation>) => {
+      state.selectedContextMenu = action.payload;
+    },
+    setContextMenuLocation: (state, action: PayloadAction<Points>) => {
+      state.points = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -58,7 +72,7 @@ export const conversationsSlice = createSlice({
   },
 });
 
-const selectConversations = (state: RootState) => state.conversation.conversations;
+const selectConversations = (state: RootState) => state.conversations.conversations;
 const selectConversationId = (state: RootState, id: string) => id;
 
 export const selectConversationById = createSelector(
@@ -67,6 +81,6 @@ export const selectConversationById = createSelector(
 );
 
 // Action creators are generated for each case reducer function
-export const { addConversation, updateConversation } = conversationsSlice.actions;
+export const { addConversation, updateConversation, toggleContextMenu, setSelectedConversation, setContextMenuLocation } = conversationsSlice.actions;
 
 export default conversationsSlice.reducer;

@@ -1,4 +1,11 @@
-import React, { Dispatch, FC, SetStateAction, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   CharacterLimit,
   MessageInputContainer,
@@ -14,7 +21,7 @@ import { RootState } from "src/store";
 import { useSelector } from "react-redux";
 import { addAttachment } from "src/store/message-panel/messagePanelSlice";
 import { ClipboardEvent, DragEvent } from "../../utils/types";
-import Picker from "emoji-picker-react";
+import Picker, { IEmojiData } from "emoji-picker-react";
 import { Box } from "@chakra-ui/react";
 
 type Props = {
@@ -102,12 +109,29 @@ export const MessageInputField: FC<Props> = ({
     handleFileAdd(files);
   };
 
-  const handleEmojiClick = (event: any, emojiObject: any) => {
+  const handleEmojiClick = (event: React.MouseEvent<Element, MouseEvent>, emojiObject: IEmojiData) => {
+    event.preventDefault();
     let msg = content;
     msg += emojiObject.emoji;
     // setMessage(msg);
     setContent(msg);
   };
+
+  useEffect(() => {
+    const handleCloseEmojiResize = (e: UIEvent) => {
+      setShowEmojiPicker(false);
+    };
+    window.addEventListener("resize", handleCloseEmojiResize);
+    return () => window.removeEventListener("resize", handleCloseEmojiResize);
+  }, []);
+
+  // useEffect(() => {
+  //   const handleCloseEmojiClick = () => {
+  //     setShowEmojiPicker(false);
+  //   };
+  //   window.addEventListener("click", handleCloseEmojiClick);
+  //   return () => window.removeEventListener("click", handleCloseEmojiClick);
+  // }, []);
 
   return (
     <>

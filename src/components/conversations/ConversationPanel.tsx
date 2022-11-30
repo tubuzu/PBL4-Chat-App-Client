@@ -4,14 +4,18 @@ import { Box } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { RootState } from "src/store";
 import { Text } from "@chakra-ui/react";
+import { useTheme } from "styled-components";
+import { Theme } from "src/utils/themes";
 
 export const ConversationPanel = () => {
+  const theme = useTheme() as Theme;
   const user = useSelector((state: RootState) => state.authentication.userData);
   return (
     <Box
       sx={{
         height: "100%",
         width: "100%",
+        background: theme?.background?.primary,
         overflow: "hidden",
         display: "flex",
         justifyContent: "center",

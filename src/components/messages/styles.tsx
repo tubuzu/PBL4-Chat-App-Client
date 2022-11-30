@@ -131,7 +131,7 @@ export const MessageTextarea = styled.textarea`
   margin: 4px 0;
   resize: none;
   width: calc(100% - 112px);
-  height: 20px;
+  height: 28px;
   max-height: 200px;
   flex: 0 0 auto;
   &::-webkit-scrollbar {
@@ -203,7 +203,7 @@ export const MessageAttachmentStyle = styled.div`
   position: relative;
   max-height: 250px;
   height: 250px;
-  background-color: ${({ theme }) => theme.background.hover};
+  background-color: ${({ theme }) => theme.background.active};
   margin: 10px 0;
   border-radius: 10px;
   display: flex;

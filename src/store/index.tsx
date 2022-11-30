@@ -15,7 +15,7 @@ import authenticationReducer from './authenticationSlice';
 
 export const store = configureStore({
   reducer: {
-    conversation: conversationReducer,
+    conversations: conversationReducer,
     messages: messageReducer,
     selectedConversationType: selectedTypeReducer,
     friends: friendsReducer,

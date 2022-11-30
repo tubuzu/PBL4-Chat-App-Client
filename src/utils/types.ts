@@ -33,6 +33,18 @@ export type User = {
     showOffline: boolean;
 };
 
+export type UserProfileResponse = {
+    _id: string;
+    username: string;
+    about: string;
+    avatar : {
+        url: string;
+    };
+    background: {
+        url: string;
+    };
+};
+
 export type Conversation = {
     _id: string;
     creator: User;
@@ -43,7 +55,7 @@ export type Conversation = {
 
 export type CreateConversationParams = {
     userId: string;
-    message: string;
+    // message: string;
 };
 
 export type MessageAttachment = {
@@ -293,6 +305,11 @@ export type SystemNotificationType = {
 
 export type UpdateStatusParams = {
     statusMessage: string;
+};
+
+export type ChangePasswordParams = {
+    password: string;
+    newPassword: string;
 };
 
 export type SelectableTheme = 'dark' | 'light';

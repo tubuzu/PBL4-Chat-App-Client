@@ -1,4 +1,8 @@
-import { ConversationSidebarItemProps, SettingsSidebarItemProps } from "src/utils/styleTypes";
+import { theme } from "@chakra-ui/react";
+import {
+  ConversationSidebarItemProps,
+  SettingsSidebarItemProps,
+} from "src/utils/styleTypes";
 import styled from "styled-components";
 
 export const SidebarHeader = styled.header`
@@ -6,7 +10,7 @@ export const SidebarHeader = styled.header`
   padding: 10px 22px;
   box-sizing: border-box;
   flex-shrink: 0;
-  border-bottom: ${({theme}) => theme.border.primary};
+  border-bottom: ${({ theme }) => theme.border.primary};
   display: flex;
   align-items: center;
   gap: 20px;
@@ -45,7 +49,8 @@ export const ConversationSearchbar = styled.input`
   font-family: "Inter";
   border-radius: 5px;
   box-sizing: border-box;
-  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #fff;
   }
 `;
@@ -157,7 +162,7 @@ export const GroupRecipientsSidebarStyle = styled.aside`
   height: 100%;
   width: 350px;
   background-color: ${({ theme }) => theme.background.primary};
-  border-left: ${({theme}) => theme.border.primary};
+  border-left: ${({ theme }) => theme.border.primary};
   flex: 0 0 auto;
 `;
 
@@ -166,13 +171,15 @@ export const SettingsSidebarStyle = styled.aside`
   flex-direction: column;
   height: 100%;
   width: 300px;
-  background-color: #111111;
+  background-color: ${({ theme }) => theme.background.primary};
+  border-right: ${({ theme }) => theme.border.primary};
   flex: 0 0 auto;
 `;
 
 export const SettingsSidebarHeader = styled.header`
   width: 100%;
-  padding: 36px;
+  padding: 23px;
+  border-bottom: ${({ theme }) => theme.border.primary};
   font-weight: 500;
   box-sizing: border-box;
   & span {
@@ -183,7 +190,7 @@ export const SettingsSidebarHeader = styled.header`
 export const SettingsSidebarItemContainer = styled.div``;
 
 export const SettingsSidebarItemStyle = styled.div<SettingsSidebarItemProps>`
-  padding: 10px 24px;
+  padding: 10px 10px;
   cursor: pointer;
   & .settingItem {
     display: flex;
@@ -192,9 +199,30 @@ export const SettingsSidebarItemStyle = styled.div<SettingsSidebarItemProps>`
     user-select: none;
     padding: 14px;
     border-radius: 8px;
-    background-color: ${({ isActive }) => isActive && '#070707'};
+    background-color: ${({ isActive, theme }) =>
+      isActive && theme.background.selected};
+    transition: all 0.2s;
     & span {
       font-weight: 500;
+    }
+    &:hover {
+      background-color: ${({ theme }) => theme.background.hover};
+    }
+  }
+  & .logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+    padding: 14px;
+    border-radius: 8px;
+    background-color: #cf2626;
+    transition: all 0.2s;
+    & span {
+      font-weight: 500;
+    }
+    &:hover {
+      background-color: #fd3b3b;
     }
   }
 `;

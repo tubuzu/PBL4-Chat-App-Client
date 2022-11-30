@@ -1,14 +1,14 @@
-import { AxiosError } from "axios";
+// import { AxiosError } from "axios";
 import React, { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useToastHook } from "src/utils/hooks/useToast";
+// import { useToastHook } from "src/utils/hooks/useToast";
 import { RootState } from "src/store";
 import { selectConversationById } from "src/store/conversationSlice";
 import { selectGroupById } from "src/store/groupSlice";
 import { removeAllAttachments } from "src/store/message-panel/messagePanelSlice";
 import {
-  addSystemMessage,
+  // addSystemMessage,
   clearAllMessages,
 } from "src/store/system-messages/systemMessagesSlice";
 import { createMessage } from "src/utils/apis";
@@ -39,7 +39,7 @@ export const MessagePanel: FC<Props> = ({
   const [content, setContent] = useState("");
   const { id: routeId } = useParams();
   const user = useSelector((state: RootState) => state.authentication.userData);
-  const { error } = useToastHook();
+  // const { error } = useToastHook();
   const { attachments } = useSelector((state: RootState) => state.messagePanel);
   const conversation = useSelector((state: RootState) =>
     selectConversationById(state, routeId!)

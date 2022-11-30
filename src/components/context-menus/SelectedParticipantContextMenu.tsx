@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../../store';
 import {
   // removeGroupRecipientThunk,
@@ -29,7 +29,7 @@ export const CustomIcon: FC<CustomIconProps> = ({ type }) => {
 export const SelectedParticipantContextMenu: FC<Props> = ({ points }) => {
   const { id } = useParams();
   const user = useSelector((state: RootState) => state.authentication.userData);
-  // const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const selectedUser = useSelector(
     (state: RootState) => state.groupSidebar.selectedUser
   );
@@ -40,8 +40,7 @@ export const SelectedParticipantContextMenu: FC<Props> = ({ points }) => {
   const seeProfile = () => {
     console.log(`See profile User: ${selectedUser?._id}`);
     if (!selectedUser) return;
-
-    
+    navigate(`/home/profile/${selectedUser._id}`)
   }
 
   const kickUser = () => {
@@ -73,7 +72,7 @@ export const SelectedParticipantContextMenu: FC<Props> = ({ points }) => {
 
   return (
     <ContextMenu top={points.y} left={points.x}>
-      <ContextMenuItem>
+      <ContextMenuItem onClick={seeProfile}>
         <Person size={20} color="#7c7c7c" />
         <span style={{ color: '#7c7c7c' }}>Profile</span>
       </ContextMenuItem>

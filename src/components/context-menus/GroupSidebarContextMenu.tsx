@@ -9,7 +9,7 @@ import {
 } from "../../store/groupSlice";
 // import { isGroupOwner } from "../../utils/helpers";
 import { ContextMenu, ContextMenuItem } from "./styles";
-import { IoMdExit, IoIosArchive } from "react-icons/io";
+import { IoMdExit } from "react-icons/io";
 import { leaveGroupAPI } from "src/Pages/GroupPage/queries";
 
 export const GroupSidebarContextMenu: FC = () => {
@@ -42,10 +42,6 @@ export const GroupSidebarContextMenu: FC = () => {
       <ContextMenuItem onClick={leaveGroup}>
         <IoMdExit size={20} color="#ff0000" />
         <span style={{ color: "#ff0000" }}>Leave Group</span>
-      </ContextMenuItem>
-      <ContextMenuItem>
-        <IoIosArchive size={20} color="#fff" />
-        <span style={{ color: "#fff" }}>Archive Group</span>
       </ContextMenuItem>
     </ContextMenu>
   );

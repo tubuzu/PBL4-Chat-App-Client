@@ -1,9 +1,9 @@
 import React, { Dispatch, FC, useEffect, useState } from 'react';
 import {
   Button,
-  InputContainer,
-  InputLabel,
-  TextField,
+  // InputContainer,
+  // InputLabel,
+  // TextField,
 } from './styles';
 import styles from './index.module.scss';
 import { useDispatch } from 'react-redux';
@@ -25,7 +25,7 @@ export const CreateConversationForm: FC<Props> = ({ setShowModal }) => {
   const [userResults, setUserResults] = useState<User[]>([]);
   const [selectedUser, setSelectedUser] = useState<User>();
   const [searching, setSearching] = useState(false);
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
   const debouncedQuery = useDebounce(query, 1000);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ export const CreateConversationForm: FC<Props> = ({ setShowModal }) => {
     e.preventDefault();
     if (!selectedUser) return;
     return dispatch(
-      createConversationThunk({ userId: selectedUser._id, message })
+      createConversationThunk({ userId: selectedUser._id })
     )
       .unwrap()
       .then(({ data }) => {
@@ -78,7 +78,7 @@ export const CreateConversationForm: FC<Props> = ({ setShowModal }) => {
           handleUserSelect={handleUserSelect}
         />
       )}
-      <section className={styles.message}>
+      {/* <section className={styles.message}>
         <InputContainer backgroundColor="#161616">
           <InputLabel>Message (optional)</InputLabel>
           <TextField
@@ -86,7 +86,8 @@ export const CreateConversationForm: FC<Props> = ({ setShowModal }) => {
             onChange={(e) => setMessage(e.target.value)}
           />
         </InputContainer>
-      </section>
+      </section> */}
+      <div style={{height: '25px'}}></div>
       <Button>Create Conversation</Button>
     </form>
   );

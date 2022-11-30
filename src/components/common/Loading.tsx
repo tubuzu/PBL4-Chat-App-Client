@@ -3,8 +3,8 @@ import { Spinner } from "@chakra-ui/react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   overflow: hidden;
   display: flex;
   justify-content: center;

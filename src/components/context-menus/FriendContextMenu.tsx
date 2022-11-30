@@ -9,6 +9,7 @@ import { removeFriendThunk } from "../../store/friends/friendsThunk";
 import { postNewConversation } from "src/Pages/Conversation/queries";
 import { SocketContext } from "../../utils/context/SocketContext";
 import { ContextMenu, ContextMenuItem } from "./styles";
+import { Person } from "akar-icons";
 
 export const FriendContextMenu = () => {
   const user = useSelector((state: RootState) => state.authentication.userData);
@@ -35,7 +36,7 @@ export const FriendContextMenu = () => {
   const sendMessage = () => {
     const recipient = getUserFriendInstance();
     recipient &&
-      postNewConversation({ userId: recipient._id, message: "" })
+      postNewConversation({ userId: recipient._id })
         .then(({ data }) => {
           console.log(data);
           navigate(`/home/conversations/${data._id}`);
@@ -45,8 +46,19 @@ export const FriendContextMenu = () => {
         });
   };
 
+  const seeProfile = () => {
+    const recipient = getUserFriendInstance();
+    if (!recipient) return;
+    console.log(`See profile User: ${recipient._id}`);
+    navigate(`/home/profile/${recipient._id}`);
+  };
+
   return (
     <ContextMenu top={points.y} left={points.x}>
+      <ContextMenuItem onClick={seeProfile}>
+        <Person size={20} color="#7c7c7c" />
+        <span style={{ color: '#7c7c7c' }}>Profile</span>
+      </ContextMenuItem>
       <ContextMenuItem onClick={removeFriend}>
         <MdPersonRemove size={20} color="#ff0000" />
         <span style={{ color: "#ff0000" }}>Remove Friend</span>

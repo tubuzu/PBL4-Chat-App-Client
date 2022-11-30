@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import MoonLoader from "react-spinners/MoonLoader";
 import { Edit } from "akar-icons";
 import { UserBanner } from "src/components/setttings/profile/UserBanner";
-import { OverlayStyle } from "src/components/modals/styles";
 import {
   Page,
   ProfileAboutSection,
@@ -19,6 +17,7 @@ import { updateUserProfile } from "./queries";
 import { useDispatch } from "react-redux";
 import { updateUserThunk } from "src/store/authenticationSlice";
 import { UserAvatar } from "src/components/setttings/profile/UserAvatar";
+import Loading from "src/components/common/Loading";
 
 export const SettingsProfilePage = () => {
   const user = useSelector((state: RootState) => state.authentication.userData);
@@ -87,9 +86,7 @@ export const SettingsProfilePage = () => {
   return (
     <>
       {loading && (
-        <OverlayStyle>
-          <MoonLoader size={40} color="#fff" />
-        </OverlayStyle>
+        <Loading />
       )}
       <Page>
         <UserBanner

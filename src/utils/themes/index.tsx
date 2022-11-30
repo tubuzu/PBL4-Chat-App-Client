@@ -9,6 +9,7 @@ export type Theme = {
     primary: string;
     secondary: string;
     tertiary: string;
+    selected: string;
     hover: string;
   };
   border: {
@@ -77,7 +78,8 @@ export const DarkTheme: Theme = {
     primary: "#161616", // 1E1D1D
     secondary: "#111",
     tertiary: "#141414",
-    hover: "#3d3d3d",
+    selected: "#3d3d3d",
+    hover: "#2b2b2b",
   },
   text: {
     primary: "#fff",
@@ -149,6 +151,7 @@ export const LightTheme: Theme = {
     primary: "#C1C1C1",
     secondary: "#fff",
     tertiary: "#ededed",
+    selected: "",
     hover: "",
   },
   text: {

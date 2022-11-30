@@ -13,9 +13,9 @@ export const FriendsPageStyle = styled.div`
 export const FriendsNavbar = styled.nav`
   display: flex;
   font-size: 20px;
-  padding: 30px 60px;
+  padding: 16px 60px;
   box-sizing: border-box;
-  border-bottom: 1px solid #303030;
+  border-bottom: ${({theme}) => theme.border.primary};
   justify-content: space-between;
   & .navLinks {
     display: flex;

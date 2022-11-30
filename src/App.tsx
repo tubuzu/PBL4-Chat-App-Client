@@ -22,6 +22,10 @@ import { FriendRequestPage } from "./Pages/Friends/FriendRequestPage";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ChakraTheme } from "./utils/themes";
 import { SettingsProfilePage } from "./Pages/SettingsPage/SettingsProfilePage";
+import ProfileLayoutPage from "./Pages/ProfilePage/ProfileLayoutPage";
+import { ProfilePage } from "./Pages/ProfilePage/ProfilePage";
+import SettingsSecurityPage from "./Pages/SettingsPage/SettingsSecurityPage";
+import SettingsAppearancePage from "./Pages/SettingsPage/SettingsAppearancePage";
 
 type Props = {
   socket: Socket;
@@ -65,8 +69,18 @@ function App() {
               <Route path="friends" element={<FriendsLayoutPage />}>
                 <Route path="requests" element={<FriendRequestPage />} />
               </Route>
+              <Route path="profile" element={<ProfileLayoutPage />}>
+                <Route
+                  path=":id"
+                  element={
+                    <ProfilePage />
+                  }
+                />
+              </Route>
               <Route path="settings" element={<SettingsPage />}>
                 <Route path="profile" element={<SettingsProfilePage />} />
+                <Route path="security" element={<SettingsSecurityPage />} />
+                <Route path="appearance" element={<SettingsAppearancePage />} />
               </Route>
               <Route path="*" element={<NotFoundPage />} />
             </Route>

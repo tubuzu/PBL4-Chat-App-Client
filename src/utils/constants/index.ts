@@ -81,16 +81,16 @@ export const settingsItems: SettingsItemType[] = [
         label: 'Security',
         pathname: '/home/settings/security',
     },
-    {
-        _id: 'notifications',
-        label: 'Notifications',
-        pathname: '/home/settings/notifications',
-    },
-    {
-        _id: 'integrations',
-        label: 'Integrations',
-        pathname: '/home/settings/integrations',
-    },
+    // {
+    //     _id: 'notifications',
+    //     label: 'Notifications',
+    //     pathname: '/home/settings/notifications',
+    // },
+    // {
+    //     _id: 'integrations',
+    //     label: 'Integrations',
+    //     pathname: '/home/settings/integrations',
+    // },
     {
         _id: 'appearance',
         label: 'Appearance',
