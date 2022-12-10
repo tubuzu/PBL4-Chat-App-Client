@@ -10,15 +10,13 @@ import { SettingsSidebarItem } from "../items/SettingsSidebarItem";
 import { useDispatch } from "react-redux";
 import { logoutThunk } from "src/store/authenticationSlice";
 import { AppDispatch } from "src/store";
-import { useNavigate } from "react-router-dom";
 import { IoLogOutOutline } from "react-icons/io5";
 
 export const SettingsSidebar = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const handleLogout = async () => {
     await dispatch(logoutThunk());
-    navigate("/");
+    window.location.href = process.env.REACT_APP_URL!;
   };
 
   return (

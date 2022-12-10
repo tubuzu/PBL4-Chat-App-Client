@@ -23,10 +23,10 @@ export const SettingsProfilePage = () => {
   const user = useSelector((state: RootState) => state.authentication.userData);
 
   const [avatarFile, setAvatarFile] = useState<File>();
-  const [avatarSource, setAvatarSource] = useState(user?.avatar.url || "");
+  const [avatarSource, setAvatarSource] = useState(user?.avatar?.url || "");
   const [avatarSourceCopy, setAvatarSourceCopy] = useState(avatarSource);
 
-  const [bannerSource, setBannerSource] = useState(user?.background.url || "");
+  const [bannerSource, setBannerSource] = useState(user?.background?.url || "");
   const [bannerFile, setBannerFile] = useState<File>();
   const [bannerSourceCopy, setBannerSourceCopy] = useState(bannerSource);
   const [about, setAbout] = useState(user?.about || "");
@@ -43,10 +43,9 @@ export const SettingsProfilePage = () => {
 
   useEffect(() => {
     console.log("Updating Banner URL");
-    console.log(user?.background.url);
-    setBannerSource(user?.background.url || "");
-    setBannerSourceCopy(user?.background.url || "");
-  }, [user?.background.url]);
+    setBannerSource(user?.background?.url || "");
+    setBannerSourceCopy(user?.background?.url || "");
+  }, [user?.background?.url]);
 
   const isChanged = () => aboutCopy !== about || bannerFile || avatarFile;
 
