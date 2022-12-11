@@ -1,10 +1,10 @@
-import styled, { css } from 'styled-components';
-import { slideUp } from 'src/utils/styles/keyframes';
-import { UserBannerProps } from 'src/utils/styles/styleTypes';
-import { PageProps } from 'src/utils/styleTypes';
+import styled, { css } from "styled-components";
+import { slideUp } from "src/utils/styles/keyframes";
+import { UserBannerProps } from "src/utils/styles/styleTypes";
+import { PageProps, UserAboutProps } from "src/utils/styleTypes";
 
 export const Page = styled.div<PageProps>`
-  background-color: ${({theme})=>theme.background.primary};
+  background-color: ${({ theme }) => theme.background.primary};
   height: 100%;
   width: 100%;
   display: ${(props) => props.display};
@@ -14,47 +14,52 @@ export const Page = styled.div<PageProps>`
 `;
 
 export const SettingsProfileBanner = styled.div<UserBannerProps>`
-width: 100%;
-height: 300px;
-cursor: pointer;
-${({ backgroundUrl }) =>
-  backgroundUrl
-    ? css`
-        transition: 1s background ease;
-        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-          url('${backgroundUrl}') no-repeat center;
-        opacity: 70%;
-        transition: 300ms opacity ease;
-        background-size: cover;
-        &:hover {
-          opacity: 100%;
-        }
-      `
-    : css`
-        background-color: #404040;
-      `}
-&::before {
-  background-color: none;
-  content: 'Change Banner';
   width: 100%;
   height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #b5b5b5;
-  font-size: 20px;
-  font-weight: 500;
-  opacity: 0;
-  transition: 300ms opacity ease;
-}
-&:hover:before {
-  opacity: 1;
-}
+  cursor: pointer;
+  ${({ backgroundUrl }) =>
+    backgroundUrl
+      ? css`
+          transition: 1s background ease;
+          background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+            url("${backgroundUrl}") no-repeat center;
+          opacity: 70%;
+          transition: 300ms opacity ease;
+          background-size: cover;
+          &:hover {
+            opacity: 100%;
+          }
+        `
+      : css`
+          background-color: #404040;
+        `}
+  &::before {
+    background-color: none;
+    content: "Change Banner";
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #b5b5b5;
+    font-size: 20px;
+    font-weight: 500;
+    opacity: 0;
+    transition: 300ms opacity ease;
+  }
+  &:hover:before {
+    opacity: 1;
+  }
 `;
 
-export const ProfileAboutSection = styled.div`
+export const ProfileAboutSection = styled.div<UserAboutProps>`
   background-color: #1c1c1c;
-  border: ${({theme})=>theme.border.primary};
+  border: ${({ theme }) => theme.border.primary};
+  ${({ isEditing }) =>
+    isEditing &&
+    css`
+      border-color: #fff;
+    `}
   width: 500px;
   padding: 32px;
   box-sizing: border-box;
@@ -76,7 +81,7 @@ export const ProfileDescriptionField = styled.textarea`
   outline: none;
   border: none;
   color: #ffffff;
-  font-family: 'Inter';
+  font-family: "Inter";
   box-sizing: border-box;
   font-size: 15px;
   font-weight: 500;
@@ -144,4 +149,3 @@ export const SettingsProfileUserDetails = styled.div`
 export const ProfileSection = styled.div`
   padding: 0 48px;
 `;
-

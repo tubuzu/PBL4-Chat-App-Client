@@ -25,7 +25,6 @@ export const UserBanner: FC<Props> = ({
     setBannerSourceCopy(file ? URL.createObjectURL(file) : bannerSource);
     setBannerFile(file || undefined);
   };
-console.log(bannerSourceCopy)
   return (
     <>
       <SettingsProfileBanner

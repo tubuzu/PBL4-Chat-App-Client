@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Edit } from "akar-icons";
 import { UserBanner } from "src/components/setttings/profile/UserBanner";
 import {
@@ -73,7 +73,7 @@ export const SettingsProfilePage = () => {
       URL.revokeObjectURL(avatarSourceCopy);
       setBannerFile(undefined);
       setAvatarFile(undefined);
-      dispatch(updateUserThunk(updatedUser))
+      dispatch(updateUserThunk(updatedUser));
       setIsEditing(false);
     } catch (err) {
       console.log(err);
@@ -81,12 +81,17 @@ export const SettingsProfilePage = () => {
       setLoading(false);
     }
   };
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleEdit = (e: any) => {
+    setIsEditing(!isEditing);
+    inputRef?.current?.focus();
+    inputRef?.current?.setSelectionRange(inputRef?.current?.selectionStart, inputRef?.current?.selectionEnd);
+  };
 
   return (
     <>
-      {loading && (
-        <Loading />
-      )}
+      {loading && <Loading />}
       <Page>
         <UserBanner
           bannerSource={bannerSource}
@@ -104,17 +109,19 @@ export const SettingsProfilePage = () => {
             />
             <span>@{user?.username}</span>
           </SettingsProfileUserDetails>
-          <ProfileAboutSection>
+          <ProfileAboutSection isEditing={isEditing}>
             <ProfileAboutSectionHeader>
               <label htmlFor="about">About Me</label>
               <Edit
                 cursor="pointer"
                 strokeWidth={2}
                 size={28}
-                onClick={() => setIsEditing(!isEditing)}
+                onClick={handleEdit}
               />
             </ProfileAboutSectionHeader>
             <ProfileDescriptionField
+              ref={inputRef}
+              id="aboutTextarea"
               maxLength={200}
               disabled={!isEditing}
               value={aboutCopy}
