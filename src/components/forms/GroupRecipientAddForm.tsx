@@ -16,6 +16,9 @@ import { GroupRecipientsField } from "../recipients/GroupRecipientsField";
 import { RecipientResultContainer } from "../recipients/RecipientResultContainer";
 import { useDebounce } from "src/utils/hooks/useDebounce";
 import { searchUsers } from "src/utils/apis";
+import { RootState } from "src/store";
+import { useSelector } from "react-redux";
+import { selectGroupById } from "src/store/groupSlice";
 // import { addGroupRecipientThunk } from "src/store/groupSlice";
 // import { useDispatch } from "react-redux";
 // import { AppDispatch } from "src/store";
@@ -29,6 +32,9 @@ export const GroupRecipientAddForm: FC<Props> = ({ setShowModal }) => {
   // const [username, setUsername] = useState("");
   const { success, error } = useToastHook();
   const [query, setQuery] = useState("");
+  const group = useSelector((state: RootState) =>
+    selectGroupById(state, groupId!)
+  );
   const [results, setResults] = useState<User[]>([]);
   const [selectedRecipients, setSelectedRecipients] = useState<User[]>([]);
   const [searching, setSearching] = useState(false);
@@ -41,6 +47,12 @@ export const GroupRecipientAddForm: FC<Props> = ({ setShowModal }) => {
       searchUsers(debouncedQuery)
         .then(({ data }) => {
           console.log(data);
+          data = data.filter(
+            (user) =>
+              !group?.users.find(
+                (member) => member._id.toString() === user._id.toString()
+              )
+          );
           setResults(data);
         })
         .catch((err) => console.log(err))
@@ -70,7 +82,7 @@ export const GroupRecipientAddForm: FC<Props> = ({ setShowModal }) => {
     const exists = selectedRecipients.find((u) => u._id === user._id);
     if (!exists) setSelectedRecipients((prev) => [...prev, user]);
     setResults([]);
-    setQuery('');
+    setQuery("");
   };
 
   const removeUser = (user: User) =>
