@@ -14,6 +14,11 @@ function ChangePasswordForm() {
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const resetForm = () => {
+    setPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
+  }
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!password || !newPassword || !confirmPassword) {
@@ -35,7 +40,7 @@ function ChangePasswordForm() {
       });
       if (response.data) success(response.data);
     }
-    handleChangePassword();
+    handleChangePassword().then(() => resetForm());
   };
   return (
     <form className={styles.changePasswordForm} onSubmit={onSubmit}>
