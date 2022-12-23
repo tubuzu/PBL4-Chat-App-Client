@@ -36,7 +36,13 @@ export const conversationsSlice = createSlice({
   reducers: {
     addConversation: (state, action: PayloadAction<Conversation>) => {
       console.log('addConversation');
-      state.conversations.unshift(action.payload);
+      const { _id } = action.payload;
+      const index = state.conversations.findIndex((cm) => cm._id === _id);
+      const exists = state.conversations.find((c) => c._id === _id);
+      if (exists) {
+        state.conversations[index] = action.payload;
+      }
+      else state.conversations.unshift(action.payload);
     },
     updateConversation: (state, action: PayloadAction<Conversation>) => {
       console.log('Inside updateConversation');
