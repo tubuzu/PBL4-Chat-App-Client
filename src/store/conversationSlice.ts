@@ -65,9 +65,15 @@ export const conversationsSlice = createSlice({
         state.loading = true;
       })
       .addCase(createConversationThunk.fulfilled, (state, action) => {
-        console.log('Fulfilled');
+        console.log('CreateConversationFulfilled');
         console.log(action.payload.data);
-        state.conversations.unshift(action.payload.data);
+        const { _id } = action.payload.data;
+        const index = state.conversations.findIndex((cm) => cm._id === _id);
+        const exists = state.conversations.find((c) => c._id === _id);
+        if (exists) {
+          state.conversations[index] = action.payload.data;
+        }
+        else state.conversations.unshift(action.payload.data);
       });
   },
 });
